@@ -10,3 +10,7 @@ td {
 table, th, td {
         border-bottom: 1px solid black;
 }
+button.buysell {
+    display: inline-block;
+    width: 45%;
+}
