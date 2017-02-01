@@ -5,6 +5,7 @@ table {
 }
 td {
     width: 50%;
+    cursor: pointer; 
 }
 
 table, th, td {
