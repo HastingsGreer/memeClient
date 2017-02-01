@@ -5,10 +5,9 @@ var svg = d3.select("svg"),
 // Set width and height
 svg.attr("width", width).attr("height", height);
 
-// TODO: zoom, pan
 // Zoom
 svg.call(d3.zoom().on("zoom", function () {
-	// svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+	svg.select("g").attr("transform", d3.event.transform); // Austin wrote this
 }));
 
 // TODO more colors
