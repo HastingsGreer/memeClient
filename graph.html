@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html>
+<head>  
+  <script type="text/javascript">
+  window.onload = function () {
+    input = [
+  {
+    "price": 41, 
+    "time": "Wed, 01 Feb 2017 19:46:58 GMT"
+  }, 
+  {
+    "price": 42, 
+    "time": "Wed, 01 Feb 2017 19:46:58 GMT"
+  }, 
+  {
+    "price": 43, 
+    "time": "Wed, 01 Feb 2017 19:46:59 GMT"
+  }, 
+  {
+    "price": 44, 
+    "time": "Wed, 01 Feb 2017 21:20:17 GMT"
+  }
+]
+    var chart = new CanvasJS.Chart("chartContainer",
+    {
+      title:{
+        text: "Converting in Local Time"
+      },
+
+      axisX:{
+        title: "time",
+        gridThickness: 2,
+        interval:2, 
+        intervalType: "hour",        
+        valueFormatString: "hh TT K", 
+        labelAngle: -20
+      },
+      axisY:{
+        title: "distance"
+      },
+      data: [
+      {        
+        type: "line",
+        dataPoints: input.map(function(pt) {return {x:new Date(pt["time"]), y:pt["price"]}}) 
+      }
+      ]
+    });
+
+chart.render();
+}
+</script>
+<script type="text/javascript" src="/assets/script/canvasjs.min.js"></script>
+</head>
+<body>
+  <div id="chartContainer" style="height: 300px; width: 100%;">
+  </div>
+</body>
+</html>
