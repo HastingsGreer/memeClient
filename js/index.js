@@ -1,4 +1,4 @@
-var sortby = function(a, b) {return b[1] - a[1]};
+var sortby = function(a, b) {return b[2] - a[2]};
 var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com"
 
 function tableCreate(el, data)
@@ -27,7 +27,7 @@ function update() {
 
 
     $.getJSON(base_url+'/meme/stocks', function(data) {
-        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key]]});
+        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key], data[key]});
 
     rows.sort(sortby);
     var market = document.getElementById("jsonM");
