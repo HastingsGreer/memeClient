@@ -14,3 +14,10 @@ button.buysell {
     display: inline-block;
     width: 45%;
 }
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    font-size: 20px;
+}
