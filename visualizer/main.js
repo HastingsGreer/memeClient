@@ -1,6 +1,9 @@
 var svg = d3.select("svg"),
-	width = +svg.attr("width"),
-	height = +svg.attr("height");
+	width = window.innerWidth || +svg.attr("width"),
+	height = window.innerHeight || +svg.attr("height");
+
+// Set width and height
+svg.attr("width", width).attr("height", height);
 
 // TODO: zoom, pan
 // Zoom
@@ -234,7 +237,7 @@ function buyMeme(meme, n) {
 	n = n || 1;
 	var get_url = "http://hgreer.com/meme/buy?meme="+meme;
 	iframe.src = get_url;
-	alert("Bought meme: " + meme);
+	// alert("Bought meme: " + meme);
 }
 
 // Sell meme
@@ -242,5 +245,5 @@ function sellMeme(meme, n) {
 	n = n || 1;
 	var get_url = "http://hgreer.com/meme/sell?meme="+meme;
 	iframe.src = get_url;
-	alert("Sold meme: " + meme);
+	// alert("Sold meme: " + meme);
 }
