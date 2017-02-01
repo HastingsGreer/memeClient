@@ -1,0 +1,111 @@
+ <html>
+ <head>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+ <link rel="stylesheet" href="index.css">
+ 
+ </head> 
+<body>
+<div id="portfolio">
+    <h1> Your Portfolio: </h1>
+    <pre id="jsonP">
+    </pre>
+</div>
+
+
+
+
+<div id='buysell'>
+    <h1> Buy and Sell </h1>
+    <br>
+    Meme to buy or sell: <input type='text' name='meme' id='meme'>
+    </div>
+    <br>
+    <button onclick="sell()"> Sell </button>
+    <button onclick="buy()"> Buy </button>
+<div>
+
+
+<div id="market">
+    <h1> Market Prices: </h1> 
+    <pre id="jsonM">
+    </pre>
+</div>
+
+
+</br>
+<script type="text/javascript">
+
+
+function tableCreate(el, data)
+{
+    var tbl  = document.createElement("table");
+    
+
+    for (var i = 0; i < data.length; ++i)
+    {
+        var tr = tbl.insertRow();
+        for(var j = 0; j < data[i].length; ++j)
+        {
+            var td = tr.insertCell();
+            td.appendChild(document.createTextNode(data[i][j].toString()));
+        }
+    }
+    el.appendChild(tbl);
+}
+
+
+var sortby = function(a, b) {return b[1] - a[1]};
+
+
+
+
+function update() {
+    $.getJSON('../meme/', function(data) {
+        
+	document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
+    });
+
+
+    $.getJSON('../meme/stocks', function(data) {
+        var rows = Object.keys(data).map(function(key) {return  [key, data[key]]});
+
+	rows.sort(sortby);
+	tableCreate(document.getElementById("market"), rows);
+    });
+}
+update();
+
+function sell() {
+    var meme = document.getElementById("meme").value;
+    $.get("../meme/sell", {meme: meme}, update) 
+}
+
+
+function buy() {
+    var meme = document.getElementById("meme").value;
+    $.get("../meme/buy", {meme: meme}, update) 
+}
+
+</script>
+
+
+
+
+
+
+<h1>API doc:</h1> <br>
+<br>
+your stocks:<br>
+hgreer.com/meme/<br>
+<br>
+all stocks:<br>
+hgreer.com/meme/stocks<br>
+<br>
+buy:<br>
+hgreer.com/meme/buy?meme=yourmemehere<br>
+<br>
+sell:<br>
+hgreer.com/meme/sell?meme=yourmemehere<br>
+
+</body>
+</html>
