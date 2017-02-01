@@ -1,4 +1,5 @@
 var sortby = function(a, b) {return b[1] - a[1]};
+var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com"
 
 function tableCreate(el, data)
 {
@@ -8,9 +9,10 @@ function tableCreate(el, data)
     for (var i = 0; i < data.length; ++i)
     {
         var tr = tbl.insertRow();
-        for(var j = 0; j < data[i].length; ++j)
+        for(var j = data[i].length-1; j >= 0; j--)
         {
             var td = tr.insertCell();
+            td.setAttribute("class", "economy")
             td.appendChild(document.createTextNode(data[i][j].toString()));
         }
     }
@@ -18,13 +20,13 @@ function tableCreate(el, data)
 }
 
 function update() {
-    $.getJSON('../meme/', function(data) {
+    $.getJSON(base_url+'/meme/', function(data) {
         
     document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
     });
 
 
-    $.getJSON('../meme/stocks', function(data) {
+    $.getJSON(base_url+'/meme/stocks', function(data) {
         var rows = Object.keys(data).map(function(key) {return  [key, data[key]]});
 
     rows.sort(sortby);
@@ -39,11 +41,11 @@ update();
 
 function sell() {
     var meme = document.getElementById("meme").value;
-    $.get("../meme/sell", {meme: meme}, update) 
+    $.get(base_url+"/meme/sell", {meme: meme}, update) 
 }
 
 
 function buy() {
     var meme = document.getElementById("meme").value;
-    $.get("../meme/buy", {meme: meme}, update) 
+    $.get(base_url+"/meme/buy", {meme: meme}, update) 
 }
