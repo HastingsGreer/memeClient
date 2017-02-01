@@ -4,6 +4,7 @@ table {
 }
 td {
     width: 50%;
+    cursor: pointer; 
 }
 td.economy{
     padding: 0px 0px;
@@ -33,6 +34,8 @@ input.buysell {
     width: 100%;
     font-size: 20px;
 }
+
+
 .fixed {
 /*    overflow-y: visible;
     height: 100%;*/
@@ -51,3 +54,4 @@ input.buysell {
         position: fixed;
     }
 }*/
+
