@@ -7,7 +7,7 @@
 </head> 
 <body>
 
-    <div class="container no-gutters">
+    <div class="container-fluid no-gutters">
         <div class="row">
             <div class="col-sm-3 fixed">
                 <div id="portfolio">
@@ -16,14 +16,13 @@
                     </pre>
                 </div>
 
-                <div id='buysell'>
+                <div class='buysellbox'>
                     <h1> Buy and Sell </h1>
                     <input class="buysell" type='text' name='meme' id='meme'>
                     <br><br>
                     <button class="buysell" onclick="sell()" width="50%"> Sell </button>
                     <button class="buysell" onclick="buy()"> Buy </button>
                 </div>
-
                 <h1>API doc:</h1> 
                 your stocks:
                 <pre>hgreer.com/meme/</pre>
@@ -37,7 +36,7 @@
                 Credit: <a href="http://subdavis.com">Brandon</a> 
                         <a href="http://hgreer.com">Hastings</a>
             </div>
-            <div class="col-sm-8 col-sm-offset-4">
+            <div class="col-sm-9">
                 <div id="market">
                     <h1> Market Prices: </h1> 
                     <div id="jsonM">

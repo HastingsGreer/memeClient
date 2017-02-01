@@ -34,8 +34,11 @@ input.buysell {
     font-size: 20px;
 }
 .fixed {
-    overflow-y: auto;
-    height: 100%;
+/*    overflow-y: visible;
+    height: 100%;*/
+}
+#market {
+    /*overflow-x: auto;*/
 }
 
 @media (min-width:0px){
@@ -43,8 +46,8 @@ input.buysell {
         position: relative;
     }
 }
-@media (min-width:768px){
+/*@media (min-width:768px){
     .fixed {
         position: fixed;
     }
-}
+}*/
