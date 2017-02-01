@@ -9,7 +9,7 @@ function tableCreate(el, data)
     for (var i = 0; i < data.length; ++i)
     {
         var tr = tbl.insertRow();
-        for(var j = 0; j < data[i].length; ++j)
+        for(var j = data[i].length-1; j >= 0; j--)
         {
             var td = tr.insertCell();
             td.setAttribute("class", "economy")

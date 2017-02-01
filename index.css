@@ -6,11 +6,14 @@ td {
     width: 50%;
 }
 td.economy{
-    padding: 2px 0px;
+    padding: 1px 0px;
+    font-family: "Courier New";
+    font-weight: 600;
 }
 
 table, th, td {
-    border-bottom: 1px solid black;
+    /*border-bottom: 1px solid black;*/
+    white-space: nowrap;
 }
 
 button.buysell {
@@ -23,6 +26,7 @@ input.buysell {
 }
 
 .footer {
+    background: white;
     position: fixed;
     bottom: 0px;
     width: 100%;
@@ -31,7 +35,7 @@ input.buysell {
 
 @media (min-width:0px){
     .fixed {
-        position: default;
+        position: relative;
     }
 }
 @media (min-width:768px){
