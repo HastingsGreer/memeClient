@@ -31,6 +31,8 @@ function update() {
     var market = document.getElementById("jsonM");
     market.removeChild(market.firstChild);
     tableCreate(market, rows);
+    
+    $('td').click(function() {document.getElementById("meme").value = this.innerText});
     });
 }
 update();
