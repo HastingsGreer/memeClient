@@ -111,7 +111,7 @@ function updateData() {
 			.selectAll("circle")
 			.data(data)
 			.enter().append("circle") // don't use this
-			.attr("class", "node")
+			.attr("class", "node");
 
 		updateNode(node);
 
@@ -147,17 +147,14 @@ function ondragend(d) {
 
 function onmouseover(d) {
 	d3.select(this).transition()
-		.attr("stroke", (d) => d.color_hover)
-		.attr("stroke-width", 10)
-		// .attr("r", (d) => d.radius * 1.2);
+		.attr("style", (d) => "stroke: black; stroke-width: 5");
 	showTooltip(d);
 }
 
 function onmouseout(d) {
 	d3.select(this).transition()
-		.attr("stroke", (d) => d.color)
-		.attr("stroke-width", 0)
-		// .attr("r", (d) => d.radius);
+		// .attr("style", (d) => "stroke: " + d.color + "; stroke-width: 0");
+		.attr("style", (d) => "stroke: black; stroke-width: 0");
 	hideTooltip();
 }
 
@@ -196,7 +193,8 @@ function updateNode(node) {
 
 	// Size and color
 	node.attr("r", (d) => d.radius)
-		.attr("fill", (d) => d.color);
+		.attr("fill", (d) => d.color)
+		.attr("style", "stroke-width: 0");
 
 	// Mouse events
 	node.call(d3.drag()
