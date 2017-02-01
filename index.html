@@ -9,7 +9,7 @@
 
     <div class="container no-gutters">
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-3 affix">
                 <div id="portfolio">
                     <h1> Your Portfolio: </h1>
                     <pre id="jsonP">
@@ -18,27 +18,26 @@
 
                 <div id='buysell'>
                     <h1> Buy and Sell </h1>
-                    <br>
-                    Meme to buy or sell: <input type='text' name='meme' id='meme'>
-                    <br>
+                    <input class="buysell" type='text' name='meme' id='meme'>
+                    <br><br>
                     <button class="buysell" onclick="sell()" width="50%"> Sell </button>
                     <button class="buysell" onclick="buy()"> Buy </button>
                 </div>
+
                 <h1>API doc:</h1> 
-                your stocks:<br>
-                hgreer.com/meme/<br>
-                <br>
-                all stocks:<br>
-                hgreer.com/meme/stocks<br>
-                <br>
-                buy:<br>
-                hgreer.com/meme/buy?meme=yourmemehere<br>
-                <br>
-                sell:<br>
-                hgreer.com/meme/sell?meme=yourmemehere<br>
-                Credit: <a href="http://subdavis.com">Brandon</a> <a href="http://hgreer.com">Hastings</a>
+                your stocks:
+                <pre>hgreer.com/meme/</pre>
+                all stocks:
+                <pre>hgreer.com/meme/stocks</pre>
+                buy:
+                <pre>hgreer.com/meme/buy?meme=yourmemehere</pre>
+                sell:
+                <pre>hgreer.com/meme/sell?meme=yourmemehere</pre>
+                
+                Credit: <a href="http://subdavis.com">Brandon</a> 
+                        <a href="http://hgreer.com">Hastings</a>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 col-sm-offset-4">
                 <div id="market">
                     <h1> Market Prices: </h1> 
                     <div id="jsonM">
