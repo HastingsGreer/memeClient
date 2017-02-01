@@ -28,7 +28,9 @@ function update() {
         var rows = Object.keys(data).map(function(key) {return  [key, data[key]]});
 
     rows.sort(sortby);
-    tableCreate(document.getElementById("market"), rows);
+    var market = document.getElementById("jsonM");
+    market.removeChild(market.firstChild);
+    tableCreate(market, rows);
     });
 }
 update();
