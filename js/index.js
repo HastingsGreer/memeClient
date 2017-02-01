@@ -27,7 +27,7 @@ function update() {
 
 
     $.getJSON(base_url+'/meme/stocks', function(data) {
-        var rows = Object.keys(data).map(function(key) {return  [key, data[key], "$"]});
+        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key]]});
 
     rows.sort(sortby);
     var market = document.getElementById("jsonM");
