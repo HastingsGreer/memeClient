@@ -9,7 +9,7 @@ function tableCreate(el, data)
     for (var i = 0; i < data.length; ++i)
     {
         var tr = tbl.insertRow();
-        for(var j = data[i].length-1; j >= 0; j--)
+        for(var j = data[i].length-2; j >= 0; j--)
         {
             var td = tr.insertCell();
             td.setAttribute("class", "economy")
@@ -27,7 +27,7 @@ function update() {
 
 
     $.getJSON(base_url+'/meme/stocks', function(data) {
-        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key], data[key]});
+        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key], data[key]]});
 
     rows.sort(sortby);
     var market = document.getElementById("jsonM");
