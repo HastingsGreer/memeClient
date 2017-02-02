@@ -1,11 +1,13 @@
 var svg = d3.select("svg"),
-	width = +svg.attr("width"),
-	height = +svg.attr("height");
+	width = window.innerWidth || +svg.attr("width"),
+	height = window.innerHeight || +svg.attr("height");
 
-// TODO: zoom, pan
+// Set width and height
+svg.attr("width", width).attr("height", height);
+
 // Zoom
 svg.call(d3.zoom().on("zoom", function () {
-	// svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+	svg.select("g").attr("transform", d3.event.transform); // Austin wrote this
 }));
 
 // TODO more colors
@@ -109,7 +111,7 @@ function updateData() {
 			.selectAll("circle")
 			.data(data)
 			.enter().append("circle") // don't use this
-			.attr("class", "node")
+			.attr("class", "node");
 
 		updateNode(node);
 
@@ -145,17 +147,14 @@ function ondragend(d) {
 
 function onmouseover(d) {
 	d3.select(this).transition()
-		.attr("stroke", (d) => d.color_hover)
-		.attr("stroke-width", 10)
-		// .attr("r", (d) => d.radius * 1.2);
+		.attr("style", (d) => "stroke: black; stroke-width: " + (0.045 * d.radius < 3 ? 3 : 0.045 * d.radius));
 	showTooltip(d);
 }
 
 function onmouseout(d) {
 	d3.select(this).transition()
-		.attr("stroke", (d) => d.color)
-		.attr("stroke-width", 0)
-		// .attr("r", (d) => d.radius);
+		// .attr("style", (d) => "stroke: " + d.color + "; stroke-width: 0");
+		.attr("style", (d) => "stroke: black; stroke-width: 0");
 	hideTooltip();
 }
 
@@ -194,7 +193,8 @@ function updateNode(node) {
 
 	// Size and color
 	node.attr("r", (d) => d.radius)
-		.attr("fill", (d) => d.color);
+		.attr("fill", (d) => d.color)
+		.attr("style", "stroke-width: 0");
 
 	// Mouse events
 	node.call(d3.drag()
@@ -234,7 +234,7 @@ function buyMeme(meme, n) {
 	n = n || 1;
 	var get_url = "http://hgreer.com/meme/buy?meme="+meme;
 	iframe.src = get_url;
-	alert("Bought meme: " + meme);
+	// alert("Bought meme: " + meme);
 }
 
 // Sell meme
@@ -242,5 +242,5 @@ function sellMeme(meme, n) {
 	n = n || 1;
 	var get_url = "http://hgreer.com/meme/sell?meme="+meme;
 	iframe.src = get_url;
-	alert("Sold meme: " + meme);
+	// alert("Sold meme: " + meme);
 }
