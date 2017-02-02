@@ -39,6 +39,9 @@ input.buysell {
     font-size: 20px;
 }
 
+body > .container-fluid {
+    margin-bottom: 50px;
+}
 
 .fixed {
 /*    overflow-y: visible;
@@ -46,7 +49,7 @@ input.buysell {
 }
 #market {
     /*overflow-x: auto;*/
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 @media (min-width:0px){
