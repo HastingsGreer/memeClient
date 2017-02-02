@@ -4,7 +4,7 @@ var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com"
 function tableCreate(el, data)
 {
     var tbl  = document.createElement("table");
-    
+
 
     for (var i = 0; i < data.length; ++i)
     {
@@ -22,21 +22,21 @@ var oldData;
 var oldDeltas = {};
 function updateMarket(){
     $.getJSON(base_url+'/meme/stocks', function(data) {
-        
+
         var rows = Object.keys(data).map(function(key) {
-            
+
             var change;
             if(oldDeltas[key]){
                 change = oldDeltas[key];
             } else {
                 change = "";
             }
-            
+
             if(oldData && oldData[key]){
-               
+
                if(oldData[key] > data[key]){
                    change = "\u2193";
-               } 
+               }
                if(oldData[key] < data[key]){
                    change = "\u2191";
                }
@@ -49,7 +49,7 @@ function updateMarket(){
         var market = document.getElementById("jsonM");
         market.removeChild(market.firstChild);
         tableCreate(market, rows);
-    
+
         $('td').click(function() {
             document.getElementById("meme").value = this.innerText;
             graph(this.innerText);
@@ -60,25 +60,28 @@ function updateMarket(){
 
 function update() {
   $.getJSON(base_url+'/meme/', function(data) {
-        
-      document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
+
+      var portfolioText = JSON.stringify(data, undefined, 2);
+      portfolioText = portfolioText.substring(2, portfolioText.length-1).replace(/{(.*)}/, '');
+      portfolioText = portfolioText.replace(/\n(.*)0,/,'');
+      document.getElementById("jsonP").innerHTML = portfolioText;
       updateMarket();
    });
 
 
-    
-  
+
+
 }
 
 function sell() {
     var meme = document.getElementById("meme").value;
-    $.get(base_url+"/meme/sell", {meme: meme}, update) 
+    $.get(base_url+"/meme/sell", {meme: meme}, update)
 }
 
 
 function buy() {
     var meme = document.getElementById("meme").value;
-    $.get(base_url+"/meme/buy", {meme: meme}, update) 
+    $.get(base_url+"/meme/buy", {meme: meme}, update)
 }
 
 
@@ -121,7 +124,7 @@ function init(){
     });
   }
 
-  // Now that we've initialized the JavaScript SDK, we call 
+  // Now that we've initialized the JavaScript SDK, we call
   // FB.getLoginStatus().  This function gets the state of the
   // person visiting this page and can return one of three states to
   // the callback you provide.  They can be:
