@@ -20,7 +20,7 @@ function tableCreate(el, data)
 }
 
 function update() {
-    $.getJSON(base_url+'/meme/', function(data) {
+  $.getJSON(base_url+'/meme/', function(data) {
         
     document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
     });
@@ -34,8 +34,11 @@ function update() {
     market.removeChild(market.firstChild);
     tableCreate(market, rows);
     
-    $('td').click(function() {document.getElementById("meme").value = this.innerText});
+    $('td').click(function() {
+        document.getElementById("meme").value = this.innerText;
+        graph(this.innerText);
     });
+  });
 }
 
 function sell() {
@@ -51,6 +54,7 @@ function buy() {
 
 function init(){
     update();
+    graph("thebeemovie");
 
     function statusChangeCallback(response) {
     console.log('statusChangeCallback');
@@ -112,4 +116,5 @@ function init(){
 }
 
 // Entry point
-init();
+
+window.onload = init;

@@ -2,44 +2,14 @@
 <html>
 <head>  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript">
-  window.onload = function () {
-   var meme="Harambe";
-   $.getJSON("http://hgreer.com/meme/history", {meme:meme}, function(input) {
-    var chart = new CanvasJS.Chart("chartContainer",
-    {
-      title:{
-        text: "Price of " + meme      },
+  <script src="graph.js"></script>
+  
 
-      axisX:{
-        title: "time",
-        gridThickness: 2,
-        interval:2, 
-        intervalType: "hour",        
-        valueFormatString: "hh TT K", 
-        labelAngle: -20
-      },
-      axisY:{
-        title: "price"
-      },
-      data: [
-      {        
-        type: "line",
-        dataPoints: input.map(function(pt) {return {x:new Date(pt["time"]), y:pt["price"]}}) 
-      }
-      ]
-    });
-    
-   chart.render();
-    
-  });
-
-}
-</script>
-<script type="text/javascript" src="/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript" src="http://hgreer.com/assets/script/canvasjs.min.js"></script>
 </head>
 <body>
   <div id="chartContainer" style="height: 300px; width: 100%;">
   </div>
+  <script type="text/javascript">window.onload = function(){graph("Harambe")};</script>
 </body>
 </html>

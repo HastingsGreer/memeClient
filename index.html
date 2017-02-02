@@ -2,6 +2,8 @@
  <head>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
      <script src="js/index.js"></script>
+     <script type="text/javascript" src="http://hgreer.com/assets/script/canvasjs.min.js"></script>
+     <script src="graph.js"></script>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
      <link rel="stylesheet" href="index.css">
 </head> 
@@ -45,6 +47,9 @@
                         <a href="https://kylefeng28.github.io/">Kyle</a> 
             </div>
             <div class="col-sm-9">
+                <div id="graph">
+                    <div id="chartContainer" style="height: 300px; width: 100%;">
+                    </div>
                 <div id="market">
                     <h1> Market Prices: </h1> 
                     <div id="jsonM">
