@@ -19,26 +19,32 @@ function tableCreate(el, data)
     el.appendChild(tbl);
 }
 
-function update() {
-  $.getJSON(base_url+'/meme/', function(data) {
-        
-    document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
-    });
-
-
+function updateMarket(){
     $.getJSON(base_url+'/meme/stocks', function(data) {
         var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key], data[key]]});
 
-    rows.sort(sortby);
-    var market = document.getElementById("jsonM");
-    market.removeChild(market.firstChild);
-    tableCreate(market, rows);
+        rows.sort(sortby);
+        var market = document.getElementById("jsonM");
+        market.removeChild(market.firstChild);
+        tableCreate(market, rows);
     
-    $('td').click(function() {
-        document.getElementById("meme").value = this.innerText;
-        graph(this.innerText);
-    });
-  });
+        $('td').click(function() {
+            document.getElementById("meme").value = this.innerText;
+            graph(this.innerText);
+        });
+     });
+}
+
+function update() {
+  $.getJSON(base_url+'/meme/', function(data) {
+        
+      document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2)
+      updateMarket();
+   });
+
+
+    
+  
 }
 
 function sell() {
@@ -52,8 +58,13 @@ function buy() {
     $.get(base_url+"/meme/buy", {meme: meme}, update) 
 }
 
+
+
+
+
 function init(){
     update();
+    setInterval(updateMarket, 3000);
     graph("thebeemovie");
 
     function statusChangeCallback(response) {
