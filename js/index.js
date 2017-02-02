@@ -63,7 +63,7 @@ function update() {
 
       var portfolioText = JSON.stringify(data, undefined, 2);
       portfolioText = portfolioText.substring(2, portfolioText.length-1).replace(/{(.*)}/, '');
-      portfolioText = portfolioText.replace(/\n(.*)0,/,'');
+      portfolioText = portfolioText.replace(/(.*)0,/,'');
       document.getElementById("jsonP").innerHTML = portfolioText;
       updateMarket();
    });
