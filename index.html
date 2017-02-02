@@ -6,7 +6,7 @@
      <script src="graph.js"></script>
      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
      <link rel="stylesheet" href="index.css">
-</head> 
+</head>
 <body>
 
     <div class="container-fluid no-gutters">
@@ -18,17 +18,11 @@
                     </pre>
                 </div>
 
-                <div class='buysellbox'>
-                    <h1> Buy and Sell </h1>
-                    <input class="buysell" type='text' name='meme' id='meme'>
-                    <br><br>
-                    <button class="buysell" onclick="sell()" width="50%"> Sell </button>
-                    <button class="buysell" onclick="buy()"> Buy </button>
-                </div>
+
 
 				<h1><a href="visualizer">Visualizer</a></h1>
 
-                <h1>API doc:</h1> 
+                <h1>API doc:</h1>
                 your stocks:
                 <pre>hgreer.com/meme/</pre>
                 all stocks:
@@ -41,22 +35,29 @@
 		<pre>hgreer.com/meme/history?meme=yourmemehere</pre>
 		recent transactions:
 		<pre>hgreer.com/meme/recent</pre>
-                Credit: <a href="http://subdavis.com">Brandon</a> 
-                        <a href="http://hgreer.com">Hastings</a> 
-                        <a href="https://github.com/dafondo">Austin</a> 
-                        <a href="https://kylefeng28.github.io/">Kyle</a> 
+                Credit: <a href="http://subdavis.com">Brandon</a>
+                        <a href="http://hgreer.com">Hastings</a>
+                        <a href="https://github.com/dafondo">Austin</a>
+                        <a href="https://kylefeng28.github.io/">Kyle</a>
             </div>
             <div class="col-sm-9">
                 <div id="graph">
                     <div id="chartContainer" style="height: 300px; width: 100%;">
                     </div>
                 <div id="market">
-                    <h1> Market Prices: </h1> 
+                    <h1> Market Prices: </h1>
                     <div id="jsonM">
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    <div class='buysellbox col-sm-3'>
+        <h1> Buy and Sell </h1>
+        <input class="buysell" type='text' name='meme' id='meme'>
+        <br><br>
+        <button class="buysell" onclick="sell()" width="50%"> Sell </button>
+        <button class="buysell" onclick="buy()"> Buy </button>
     </div>
     <div class="footer">
         <marquee behavior="scroll" direction="left">Breaking news.  Memes trading at record highs.  Software developers for new meme trading platform recorded coding while high.</marquee>
