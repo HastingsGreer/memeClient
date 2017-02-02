@@ -1,31 +1,15 @@
 <!DOCTYPE HTML>
 <html>
 <head>  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script type="text/javascript">
   window.onload = function () {
-    input = [
-  {
-    "price": 41, 
-    "time": "Wed, 01 Feb 2017 19:46:58 GMT"
-  }, 
-  {
-    "price": 42, 
-    "time": "Wed, 01 Feb 2017 19:46:58 GMT"
-  }, 
-  {
-    "price": 43, 
-    "time": "Wed, 01 Feb 2017 19:46:59 GMT"
-  }, 
-  {
-    "price": 44, 
-    "time": "Wed, 01 Feb 2017 21:20:17 GMT"
-  }
-]
+   var meme="Harambe";
+   $.getJSON("http://hgreer.com/meme/history", {meme:meme}, function(input) {
     var chart = new CanvasJS.Chart("chartContainer",
     {
       title:{
-        text: "Converting in Local Time"
-      },
+        text: "Price of " + meme      },
 
       axisX:{
         title: "time",
@@ -36,7 +20,7 @@
         labelAngle: -20
       },
       axisY:{
-        title: "distance"
+        title: "price"
       },
       data: [
       {        
@@ -45,8 +29,11 @@
       }
       ]
     });
+    
+   chart.render();
+    
+  });
 
-chart.render();
 }
 </script>
 <script type="text/javascript" src="/assets/script/canvasjs.min.js"></script>
