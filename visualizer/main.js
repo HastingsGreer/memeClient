@@ -147,7 +147,7 @@ function ondragend(d) {
 
 function onmouseover(d) {
 	d3.select(this).transition()
-		.attr("style", (d) => "stroke: black; stroke-width: 5");
+		.attr("style", (d) => "stroke: black; stroke-width: " + (0.045 * d.radius < 3 ? 3 : 0.045 * d.radius));
 	showTooltip(d);
 }
 
