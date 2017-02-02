@@ -31,22 +31,30 @@ input.buysell {
     width: 100%;
 }
 
-/*TODO: Make floating buy/sell box prettier, esp. when screen is minimized*/
+/*TODO: Make floating buy/sell box prettier, esp. when screen is not maximized*/
 .buysellbox {
-    background: white;
+    background-color: rgba(0, 0, 0, 0.7);
     position: fixed;
     bottom: 25px;
-    padding-bottom: 5px;
-    z-index: 5;
+    left: 0px;
+    padding-bottom: 10px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /*z-index: 5;*/
+}
+
+.buysellbox h1 {
+    color: white;
 }
 
 .footer {
     background: white;
     position: fixed;
     bottom: 0px;
+    height: 25px;
     width: 100%;
     font-size: 20px;
-    z-index: 10;
+    /*z-index: 10;*/
 }
 
 body > .container-fluid {
