@@ -1,4 +1,4 @@
-var sortby = function(a, b) {return b[2] - a[2]};
+var sortby = function(a, b) {return b[3] - a[3]};
 var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com"
 
 function tableCreate(el, data)
@@ -18,10 +18,32 @@ function tableCreate(el, data)
     }
     el.appendChild(tbl);
 }
-
+var oldData;
+var oldDeltas = {};
 function updateMarket(){
     $.getJSON(base_url+'/meme/stocks', function(data) {
-        var rows = Object.keys(data).map(function(key) {return  [key, "$"+data[key], data[key]]});
+        
+        var rows = Object.keys(data).map(function(key) {
+            
+            var change;
+            if(oldDeltas[key]){
+                change = oldDeltas[key];
+            } else {
+                change = "";
+            }
+            
+            if(oldData && oldData[key]){
+               
+               if(oldData[key] > data[key]){
+                   change = "\u2193";
+               } 
+               if(oldData[key] < data[key]){
+                   change = "\u2191";
+               }
+            }
+            oldDeltas[key] = change;
+            return  [key, change, "$"+data[key], data[key]]
+        });
 
         rows.sort(sortby);
         var market = document.getElementById("jsonM");
@@ -32,6 +54,7 @@ function updateMarket(){
             document.getElementById("meme").value = this.innerText;
             graph(this.innerText);
         });
+        oldData = data;
      });
 }
 
