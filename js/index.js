@@ -60,17 +60,15 @@ function updateMarket(){
 
 function update() {
   $.getJSON(base_url+'/meme/', function(data) {
-
-      var portfolioText = JSON.stringify(data, undefined, 2);
-      // Removes brackets
-      portfolioText = portfolioText.substring(2, portfolioText.length-1).replace(/{(.*)/, '').replace(/(.*)}/, '');
-      // Removes quotation marks and capitalize money and stocks
-      portfolioText = portfolioText.replace(/"(.*)"(:)/gi, "$1$2").replace(/money/,"Money").replace(/stocks/, "Stocks");
-      // Removes zero value stocks
-      portfolioText = portfolioText.replace(/\n(.*): 0(,|\s)/gi,'');
-      // Removes commas
-      portfolioText = portfolioText.replace(/(.*: \d+),(\s*\n)/gi, "$1$2");
-      document.getElementById("jsonP").innerHTML = portfolioText;
+      for(var stock in data["stocks"]) {
+          if (!data.stocks.hasOwnProperty[stock]) {
+              continue;
+          }
+          if (data["stocks"][stock] == 0) {
+              delete data["stocks"][stock];
+          }
+      }
+      document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2);
       updateMarket();
    });
 
