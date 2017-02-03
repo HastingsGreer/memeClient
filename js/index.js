@@ -60,12 +60,9 @@ function updateMarket(){
 
 function update() {
   $.getJSON(base_url+'/meme/', function(data) {
-      for(var stock in data["stocks"]) {
-          if (!data.stocks.hasOwnProperty[stock]) {
-              continue;
-          }
-          if (data["stocks"][stock] == 0) {
-              delete data["stocks"][stock];
+      for(var stock in data['stocks']) {
+          if (data['stocks'][stock] == 0) {
+              delete data['stocks'][stock];
           }
       }
       document.getElementById("jsonP").innerHTML = JSON.stringify(data, undefined, 2);
