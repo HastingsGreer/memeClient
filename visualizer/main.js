@@ -1,4 +1,4 @@
-var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com";
+var base_url =  location.hostname == "hgreer.com" ? "../.." : "http://hgreer.com";
 
 var svg = d3.select("svg"),
 	width = window.innerWidth || +svg.attr("width"),
