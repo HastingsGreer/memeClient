@@ -60,23 +60,22 @@ function updateMarket(){
 
 function update() {
   $.getJSON(base_url+'/meme/', function(data) {
-      document.getElementById("jsonP").innerHTML = JSON.stringify(data, replacer, 2);
-      updateMarket();
-   });
+    document.getElementById("jsonP").innerHTML = JSON.stringify(data, replacer, 2);
+    updateMarket();
+  });
 }
 
 function replacer(key, value) {
-    if(key != 'Money' && value === 0) {
-        return undefined;
+  if (value && typeof value === 'object' && key === 'stocks') {
+    var replacement = {};
+    for (var k in value) {
+        if(value[k] !== 0) {
+          replacement[k] = value[k];
+        };
     }
-    if (value && typeof value === 'object' && key != 'Stocks') {
-      var replacement = {};
-      for (var k in value) {
-          replacement[k && k.charAt(0).toUpperCase() + k.substring(1)] = value[k];
-      }
-      return replacement;
-    }
-    return value;
+    return replacement;
+  }
+  return value;
 }
 
 function sell() {
