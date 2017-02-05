@@ -1,3 +1,5 @@
+var base_url =  location.hostname == "hgreer.com" ? ".." : "http://hgreer.com";
+
 var svg = d3.select("svg"),
 	width = window.innerWidth || +svg.attr("width"),
 	height = window.innerHeight || +svg.attr("height");
@@ -48,7 +50,7 @@ $(document).ready(function() {
 });
 
 function getData() {
-	d3.json("http://hgreer.com/meme/stocks", function (error, json) {
+	d3.json(base_url, function (error, json) {
 		if (error) throw error;
 
 		// Scrape JSON
@@ -226,21 +228,15 @@ function hideTooltip() {
 	tooltip.style("visibility", "hidden");
 }
 
-/* Business logic */
-var iframe = d3.select("body").append("iframe").node();
-
-// Buy meme
-function buyMeme(meme, n) {
-	n = n || 1;
-	var get_url = "http://hgreer.com/meme/buy?meme="+meme;
-	iframe.src = get_url;
-	// alert("Bought meme: " + meme);
+// This is the same as in index.js
+// Should probably move to a common file
+function sell() {
+    var meme = document.getElementById("meme").value;
+    $.get(base_url+"/meme/sell", {meme: meme}, update)
 }
 
-// Sell meme
-function sellMeme(meme, n) {
-	n = n || 1;
-	var get_url = "http://hgreer.com/meme/sell?meme="+meme;
-	iframe.src = get_url;
-	// alert("Sold meme: " + meme);
+
+function buy() {
+    var meme = document.getElementById("meme").value;
+    $.get(base_url+"/meme/buy", {meme: meme}, update)
 }
